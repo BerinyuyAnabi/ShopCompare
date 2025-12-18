@@ -1,8 +1,14 @@
 <?php
+// Disable error display to prevent non-JSON output
+error_reporting(E_ALL);
+ini_set('display_errors', 0);
 
 require_once __DIR__ . '/../config/cors.php';
 
 session_start();
+
+// Load authentication middleware
+require_once __DIR__ . '/../middleware/auth.php';
 
 // database connection
 require_once __DIR__ . '/../db/connect_db.php';
@@ -19,12 +25,18 @@ try {
             handleGet($conn);
             break;
         case 'POST':
+            // Require shop owner authentication for creating products
+            requireShopOwner();
             handlePost($conn);
             break;
         case 'PUT':
+            // Require shop owner authentication for updating products
+            requireShopOwner();
             handlePut($conn);
             break;
         case 'DELETE':
+            // Require shop owner authentication for deleting products
+            requireShopOwner();
             handleDelete($conn);
             break;
         default:
@@ -60,20 +72,22 @@ function handleGet($conn) {
 
     $stmt = $conn->prepare("
         SELECT
-            product_id,
-            shop_id,
-            name,
-            description,
-            price,
-            stock_quantity,
-            category,
-            image_url,
-            is_active,
-            created_at,
-            updated_at
-        FROM products
-        WHERE shop_id = ?
-        ORDER BY created_at DESC
+            p.product_id,
+            p.shop_id,
+            p.name,
+            p.description,
+            p.price,
+            p.stock_quantity,
+            p.category_id,
+            c.category_name as category,
+            p.image_url,
+            p.is_active,
+            p.created_at,
+            p.updated_at
+        FROM products p
+        LEFT JOIN categories c ON p.category_id = c.category_id
+        WHERE p.shop_id = ?
+        ORDER BY p.created_at DESC
     ");
 
     $stmt->bind_param("i", $shopId);
@@ -120,7 +134,7 @@ function handlePost($conn) {
     $description = isset($input['description']) ? trim($input['description']) : null;
     $price = floatval($input['price']);
     $stockQuantity = intval($input['stock_quantity']);
-    $category = isset($input['category']) ? trim($input['category']) : null;
+    $categoryId = isset($input['category_id']) ? intval($input['category_id']) : null;
     $imageUrl = isset($input['image_url']) ? trim($input['image_url']) : null;
 
     // Validate price and stock
@@ -149,7 +163,7 @@ function handlePost($conn) {
             description,
             price,
             stock_quantity,
-            category,
+            category_id,
             image_url,
             is_active
         ) VALUES (?, ?, ?, ?, ?, ?, ?, 1)
@@ -162,7 +176,7 @@ function handlePost($conn) {
         $description,
         $price,
         $stockQuantity,
-        $category,
+        $categoryId,
         $imageUrl
     );
 
@@ -243,10 +257,10 @@ function handlePut($conn) {
         $types .= 'i';
     }
 
-    if (isset($input['category'])) {
-        $updateFields[] = "category = ?";
-        $params[] = trim($input['category']);
-        $types .= 's';
+    if (isset($input['category_id'])) {
+        $updateFields[] = "category_id = ?";
+        $params[] = intval($input['category_id']);
+        $types .= 'i';
     }
 
     if (isset($input['image_url'])) {

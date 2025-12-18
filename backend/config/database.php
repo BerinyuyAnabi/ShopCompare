@@ -4,17 +4,17 @@
  */
 
 class Database {
-    private $host = "localhost";
-    private $port = "8889"; // Default MAMP MySQL port (change to 3306 if different)
-    private $db_name = "shopare";
-    private $username = "root";
-    private $password = "root"; // Default MAMP password
+    // private $host = "localhost";
+    // private $port = "8889"; // Default MAMP MySQL port (change to 3306 if different)
+    // private $db_name = "shopare";
+    // private $username = "root";
+    // private $password = "root"; // Default MAMP password
 
-    //private $host = "localhost";
-    //private $port = "3306"; 
-    //private $db_name = "shopare";
-    //private $username = "logan.anabi";
-    //private $password = "Minushbest#0"; 
+    private $host = "webtech_2025A_logan_anabi";
+    private $port = "3306"; 
+    private $db_name = "shopare";
+    private $username = "logan.anabi";
+    private $password = "Minushbest#0"; 
 
 
     public $conn;
