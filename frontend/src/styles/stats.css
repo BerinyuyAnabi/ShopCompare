@@ -1,0 +1,108 @@
+/* Stats Component Styles */
+
+.stats-container {
+  padding: 3rem 2rem;
+  /* max-width: 1200px; */
+  margin: 0 auto;
+}
+
+.stats-container h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.shoplist {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+/* Individual Stat Cards */
+.num_shops,
+.products_available,
+.average_savings,
+.customer_rating {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  text-align: center;
+  border: 2px solid transparent;
+}
+
+.num_shops:hover,
+.products_available:hover,
+.average_savings:hover,
+.customer_rating:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-color: #FD7979;
+}
+
+/* Card Icons */
+.num_shops::before,
+.products_available::before,
+.average_savings::before,
+.customer_rating::before {
+  content: '';
+  display: block;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #FD7979;
+}
+
+/* Specific Card Styles */
+.num_shops {
+  background: linear-gradient(135deg, #FD7979 0%, #FDACAC 100%);
+  color: white;
+}
+
+.products_available {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.average_savings {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.customer_rating {
+  background: linear-gradient(135deg, #FEEAC9 0%, #FDD89E 100%);
+  color: #333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .stats-container {
+    padding: 2rem 1rem;
+  }
+
+  .stats-container h1 {
+    font-size: 2rem;
+  }
+
+  .shoplist {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-container h1 {
+    font-size: 1.75rem;
+  }
+
+  .num_shops,
+  .products_available,
+  .average_savings,
+  .customer_rating {
+    padding: 1.5rem;
+  }
+}

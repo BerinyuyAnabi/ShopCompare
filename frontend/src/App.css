@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+.status.success {
+  background: #10b981;
+  color: white;
+}
+
+.status.error {
+  background: #ef4444;
+  color: white;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+}
+.nav2{
+  display: flex;
+  gap: 1rem;
+}
