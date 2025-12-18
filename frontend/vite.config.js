@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   // For production deployment on university server
-  // base: '/~logan.anabi/ShopCompare/frontend/',
+  base: '/~logan.anabi/ShopCompare/frontend/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

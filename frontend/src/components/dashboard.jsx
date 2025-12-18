@@ -2,7 +2,7 @@
 
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-// import FeaturedShops from "./FeaturedShops";
+import FeaturedShops from "./FeaturedShops";
 import "../styles/dashboard.css";
 
 function Dashboard() {
@@ -50,7 +50,7 @@ function Dashboard() {
     return (
         <div className="dashboard">
             {/* Display all shops */}
-            {/* <FeaturedShops requireLogin={false} /> */}
+            <FeaturedShops requireLogin={false} />
 
             <section className="products-section">
                 <h1 className="section-title">Shop by Product</h1>
