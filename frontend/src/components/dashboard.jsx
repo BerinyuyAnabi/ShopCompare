@@ -1,11 +1,47 @@
 // customer dashboard
 
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 // import FeaturedShops from "./FeaturedShops";
 import "../styles/dashboard.css";
 
 function Dashboard() {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Check session with PHP backend
+        const checkAuth = async () => {
+            try {
+                const response = await fetch('/api/check-session.php', {
+                    credentials: 'include' // Important for sending cookies
+                });
+                const data = await response.json();
+
+                if (!data.authenticated || !data.user) {
+                    alert('Please login to access the dashboard');
+                    localStorage.removeItem('user');
+                    navigate('/login');
+                    return;
+                }
+
+                // Store user data in localStorage for quick access
+                localStorage.setItem('user', JSON.stringify(data.user));
+
+                // Redirect shop owners to their dashboard
+                if (data.user.user_type === 'shop_owner') {
+                    navigate('/shop-dashboard');
+                    return;
+                }
+            } catch (error) {
+                console.error('Auth check failed:', error);
+                alert('Session expired. Please login again.');
+                localStorage.removeItem('user');
+                navigate('/login');
+            }
+        };
+
+        checkAuth();
+    }, [navigate]);
 
     const handleProductClick = (productId) => {
         navigate(`/product/${productId}`);
@@ -33,7 +69,7 @@ function Dashboard() {
 
                             <div className="product-info">
                                 <span className="product-quantity">Quantity: 1 unit</span>
-                                <span className="product-price">$299.99</span>
+                                <span className="product-price">GH₵ 299.99</span>
                             </div>
 
                             <div className="availability">
@@ -73,7 +109,7 @@ function Dashboard() {
 
                             <div className="product-info">
                                 <span className="product-quantity">Quantity: 1 unit</span>
-                                <span className="product-price">$299.99</span>
+                                <span className="product-price">GH₵ 299.99</span>
                             </div>
 
                             <div className="availability">

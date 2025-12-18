@@ -75,15 +75,7 @@ function App() {
 
   // Product detail page wrapper
   const ProductDetailPage = () => {
-    // Mock product data - replace with actual API call based on URL params
-    const mockProduct = {
-      name: "Premium Quality Product",
-      price: "299.99",
-      description: "This is a premium quality product designed to meet your needs.",
-      image: ""
-    };
-
-    return <ProductDetail product={mockProduct} />;
+    return <ProductDetail />;
   };
 
   return (

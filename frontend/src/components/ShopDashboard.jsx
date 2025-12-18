@@ -21,12 +21,50 @@ const ShopDashboard = () => {
   const [imagePreview, setImagePreview] = useState(null);
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    if (!user.user_type || user.user_type === 'customer') {
-      navigate('/login');
-      return;
-    }
-    fetchProducts();
+    // Check session with PHP backend
+    const checkAuth = async () => {
+      try {
+        const response = await fetch('/api/check-session.php', {
+          credentials: 'include' // Important for sending cookies
+        });
+        const data = await response.json();
+
+        if (!data.authenticated || !data.user) {
+          alert('Please login to access this page');
+          localStorage.removeItem('user');
+          navigate('/login');
+          return;
+        }
+
+        // Store user data in localStorage for quick access
+        localStorage.setItem('user', JSON.stringify(data.user));
+
+        // Check if user is a shop owner
+        if (data.user.user_type !== 'shop_owner') {
+          alert('This page is only accessible to shop owners');
+          navigate('/dashboard');
+          return;
+        }
+
+        // Check if shop_id exists
+        if (!data.user.shop_id) {
+          alert('Shop information not found. Please login again.');
+          localStorage.removeItem('user');
+          navigate('/login');
+          return;
+        }
+
+        // Fetch products after authentication is confirmed
+        fetchProducts();
+      } catch (error) {
+        console.error('Auth check failed:', error);
+        alert('Session expired. Please login again.');
+        localStorage.removeItem('user');
+        navigate('/login');
+      }
+    };
+
+    checkAuth();
   }, [navigate]);
 
   const fetchProducts = async () => {
@@ -444,7 +482,7 @@ const ShopDashboard = () => {
                     )}
                     <p className="product-description">{product.description}</p>
                     <div className="product-details">
-                      <span className="product-price">${parseFloat(product.price).toFixed(2)}</span>
+                      <span className="product-price">GH₵ {parseFloat(product.price).toFixed(2)}</span>
                       <span className="product-stock">Stock: {product.stock_quantity}</span>
                     </div>
                   </div>

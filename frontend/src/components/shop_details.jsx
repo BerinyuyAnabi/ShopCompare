@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/shop-page.css';
+import ContactPopup from './ContactPopup';
 
 const ShopDetails = () => {
   const { shopId } = useParams();
@@ -9,6 +10,8 @@ const ShopDetails = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [showPhonePopup, setShowPhonePopup] = useState(false);
+  const [showLocationPopup, setShowLocationPopup] = useState(false);
 
   useEffect(() => {
     fetchShopData();
@@ -94,13 +97,24 @@ const ShopDetails = () => {
               <div className="shop-meta">
                 {shop.street_address && (
                   <div className="shop-address">
-                    <span className="meta-label">Address:</span> {shop.street_address}
-                    {shop.country && `, ${shop.country}`}
+                    <span className="meta-label">Address:</span>
+                    <button
+                      className="contact-info-btn"
+                      onClick={() => setShowLocationPopup(true)}
+                    >
+                      {shop.street_address}{shop.country && `, ${shop.country}`}
+                    </button>
                   </div>
                 )}
                 {shop.phone && (
                   <div className="shop-phone">
-                    <span className="meta-label">Phone:</span> {shop.phone}
+                    <span className="meta-label">Phone:</span>
+                    <button
+                      className="contact-info-btn"
+                      onClick={() => setShowPhonePopup(true)}
+                    >
+                      {shop.phone}
+                    </button>
                   </div>
                 )}
                 {shop.email && (
@@ -151,7 +165,7 @@ const ShopDetails = () => {
                     {product.description || 'No description available'}
                   </p>
                   <div className="product-footer">
-                    <span className="product-price">${parseFloat(product.price).toFixed(2)}</span>
+                    <span className="product-price">GH₵ {parseFloat(product.price).toFixed(2)}</span>
                     <span className="product-stock">
                       {product.stock_quantity > 0
                         ? `${product.stock_quantity} in stock`
@@ -164,6 +178,27 @@ const ShopDetails = () => {
           </div>
         )}
       </div>
+
+      {/* Contact Popups */}
+      {shop && shop.phone && (
+        <ContactPopup
+          isOpen={showPhonePopup}
+          onClose={() => setShowPhonePopup(false)}
+          type="phone"
+          value={shop.phone}
+          label="Phone Number"
+        />
+      )}
+
+      {shop && shop.street_address && (
+        <ContactPopup
+          isOpen={showLocationPopup}
+          onClose={() => setShowLocationPopup(false)}
+          type="location"
+          value={`${shop.street_address}${shop.country ? `, ${shop.country}` : ''}`}
+          label="Location"
+        />
+      )}
     </div>
   );
 };
