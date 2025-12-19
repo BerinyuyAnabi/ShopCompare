@@ -44,13 +44,15 @@
 }
 
 .back-btn {
-  background: #667eea;
+  background: white;
+  color: #FD7979;
 }
 
 .back-btn:hover {
-  background: #764ba2;
+  background: #FDACAC;
+  color: white;
   transform: translateX(-3px);
-  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 8px rgba(253, 121, 121, 0.3);
 }
 
 .forward-btn {
@@ -330,7 +332,7 @@
 .product-category {
   display: inline-block;
   padding: 0.2rem 0.65rem;
-  background: #667eea;
+  background: #FD7979;
   color: white;
   border-radius: 20px;
   font-size: 0.8rem;
@@ -394,14 +396,14 @@
 }
 
 .edit-btn {
-  background: #667eea;
+  background: #FD7979;
   color: white;
 }
 
 .edit-btn:hover {
-  background: #764ba2;
+  background: #FC5C5C;
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 8px rgba(253, 121, 121, 0.3);
 }
 
 .delete-btn {

@@ -8,7 +8,7 @@
 
 /* Shop Header Section */
 .shop-header {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #FD7979 0%, #FC5C5C 100%);
   padding: 2rem 3rem;
   color: white;
   position: relative;
@@ -29,7 +29,7 @@
 
 .back-to-dashboard:hover {
   background: white;
-  color: #667eea;
+  color: #FD7979;
 }
 
 .shop-info {
@@ -65,7 +65,7 @@
   justify-content: center;
   font-size: 3rem;
   font-weight: bold;
-  color: #667eea;
+  color: #FD7979;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
@@ -212,7 +212,7 @@
 
 .product-category {
   display: inline-block;
-  background: #667eea;
+  background: #FD7979;
   color: white;
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
@@ -281,9 +281,9 @@
 }
 
 .error-container .back-btn {
-  background: #667eea;
-  color: white;
-  border: none;
+  background: white;
+  color: #FD7979;
+  border: 2px solid white;
   padding: 0.8rem 2rem;
   border-radius: 8px;
   cursor: pointer;
@@ -293,7 +293,8 @@
 }
 
 .error-container .back-btn:hover {
-  background: #764ba2;
+  background: #FD7979;
+  color: white;
 }
 
 /* Responsive Design */

@@ -52,8 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     try {
-        // Query users table
-        $stmt = $conn->prepare("SELECT user_id, username, email, password_hash, user_type, is_active FROM users WHERE email = ? AND is_active = 1");
+        // Query shop_users table
+        $stmt = $conn->prepare("SELECT user_id, username, email, password_hash, user_type, is_active FROM shop_users WHERE email = ? AND is_active = 1");
 
         if (!$stmt) {
             throw new Exception('Database error occurred');
@@ -70,11 +70,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Verify password
             if (password_verify($password, $user['password_hash'])) {
 
-                // Update last login time
-                $updateStmt = $conn->prepare("UPDATE users SET last_login = NOW() WHERE user_id = ?");
-                $updateStmt->bind_param("i", $user['user_id']);
-                $updateStmt->execute();
-                $updateStmt->close();
+                // Update last login time (if column exists in shop_users table)
+                // $updateStmt = $conn->prepare("UPDATE shop_users SET updated_at = NOW() WHERE user_id = ?");
+                // $updateStmt->bind_param("i", $user['user_id']);
+                // $updateStmt->execute();
+                // $updateStmt->close();
 
                 // Set session variables
                 $_SESSION['user_id'] = $user['user_id'];

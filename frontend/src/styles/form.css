@@ -9,7 +9,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #FD7979 0%, #FC5C5C 100%);
   padding: 20px;
 }
 
@@ -34,8 +34,8 @@
 
 .back-btn {
   background: transparent;
-  border: 2px solid #667eea;
-  color: #667eea;
+  border: 2px solid white;
+  color: white;
   padding: 10px 20px;
   border-radius: 6px;
   font-size: 14px;
@@ -49,8 +49,8 @@
 }
 
 .back-btn:hover {
-  background: #667eea;
-  color: white;
+  background: white;
+  color: #FD7979;
   transform: translateX(-3px);
 }
 
@@ -82,8 +82,8 @@
 
 .form-group input:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #FD7979;
+  box-shadow: 0 0 0 3px rgba(253, 121, 121, 0.1);
 }
 
 .form-group input.error {
@@ -155,12 +155,12 @@
   width: 20px;
   height: 20px;
   cursor: pointer;
-  accent-color: #667eea;
+  accent-color: #FD7979;
   border-radius: 4px;
 }
 
 .form-group.remember-me input[type="checkbox"]:focus {
-  outline: 2px solid #667eea;
+  outline: 2px solid #FD7979;
   outline-offset: 2px;
 }
 
@@ -171,7 +171,7 @@
 .submit-btn {
   width: 100%;
   padding: 14px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #FD7979 0%, #FC5C5C 100%);
   color: white;
   border: none;
   border-radius: 6px;
@@ -184,7 +184,7 @@
 
 .submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 5px 15px rgba(253, 121, 121, 0.4);
 }
 
 .submit-btn:active:not(:disabled) {
@@ -204,7 +204,7 @@
 }
 
 .login-link a {
-  color: #667eea;
+  color: #FD7979;
   text-decoration: none;
   font-weight: 600;
 }
