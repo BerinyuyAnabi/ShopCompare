@@ -37,29 +37,6 @@ function App() {
     }
   };
 
-  // const loadProducts = async () => {
-  //   try {
-  //     setLoading(true);
-  //     const data = await ApiService.getProducts();
-  //     setProducts(data);
-  //     setError(null);
-  //   } catch {
-  //     setError("Failed to load products. Make sure MAMP is running!");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
-
-  // const handleDelete = async (id) => {
-  //   if (window.confirm("Are you sure you want to delete this product?")) {
-  //     try {
-  //       await ApiService.deleteProduct(id);
-  //       loadProducts(); // Reload products after deletion
-  //     } catch {
-  //       alert("Failed to delete product");
-  //     }
-  //   }
-  // };
 
   // Home page component - Landing Page
   const HomePage = () => (
