@@ -96,7 +96,7 @@
 }
 
 .search-input::placeholder {
-  color: #999;
+  color: white;
 }
 
 .search-input::-webkit-search-cancel-button,
