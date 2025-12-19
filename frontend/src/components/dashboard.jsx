@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { apiFetch } from '../config/api';
 import { getImageUrl } from '../utils/image';
-import Header from "./header";
+// import Header from "./header";
 import "../styles/dashboard.css";
 
 function Dashboard() {
@@ -120,7 +120,7 @@ function Dashboard() {
 
     return (
         <div className="dashboard-page">
-            <Header />
+            {/* <Header /> */}
 
             <div className="dashboard-container">
                 {/* Welcome Section */}
