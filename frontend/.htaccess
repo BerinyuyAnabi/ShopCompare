@@ -1,0 +1,20 @@
+# Redirect all requests from /frontend/ to /frontend/dist/
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /~logan.anabi/ShopCompare/frontend/
+  
+  # If requesting /frontend/ directly, redirect to /frontend/dist/
+  RewriteCond %{REQUEST_URI} ^/~logan.anabi/ShopCompare/frontend/?$
+  RewriteRule ^(.*)$ dist/ [L]
+  
+  # Serve files from dist if they exist
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/~logan.anabi/ShopCompare/frontend/dist/%{REQUEST_URI} -f
+  RewriteRule ^(.*)$ dist/$1 [L]
+</IfModule>
+
+# Fallback to dist/index.html for client-side routing
+<IfModule mod_dir.c>
+  DirectoryIndex dist/index.html
+</IfModule>
