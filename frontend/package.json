@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+
+    "preview": "vite preview",
+    "start-backend": "php -S localhost:8888 -t .."
   },
   "dependencies": {
     "react": "^19.2.0",

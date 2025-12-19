@@ -16,7 +16,12 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:8888',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/ShopCompare/backend/api')
+        // In production the backend is served under "/~<user>/ShopCompare/backend/api".
+        // For local development we serve the repository directly so use "/backend/api".
+        // If you run MAMP (Apache) keep the existing production-like path or set the
+        // target port to your Apache port. This rewrite maps local "/api/*" to
+        // "/backend/api/*" so requests hit the backend folder in the repo root.
+        rewrite: (path) => path.replace(/^\/api/, '/backend/api')
       }
       // For server, use:
       // '/api': {

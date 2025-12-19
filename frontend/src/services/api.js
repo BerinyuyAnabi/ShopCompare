@@ -1,31 +1,27 @@
 /**
  * API Service
- * Handles all communication with PHP backend
+ * Uses the central API helpers so production builds point to the configured
+ * production backend URL (see src/config/api.js). In development this still
+ * uses the Vite proxy because the config sets API_BASE_URL = '/api' when
+ * running on localhost.
  */
 
-const API_BASE_URL = '/api';
+import { apiFetch, getApiUrl } from '../config/api';
 
 class ApiService {
-  /**
-   * Test API connection
-   */
   static async testConnection() {
     try {
-      const response = await fetch(`${API_BASE_URL}/test.php`);
-      const data = await response.json();
-      return data;
+      const response = await apiFetch('/test.php');
+      return await response.json();
     } catch (error) {
       console.error('API connection test failed:', error);
       throw error;
     }
   }
 
-  /**
-   * Get all products
-   */
   static async getProducts() {
     try {
-      const response = await fetch(`${API_BASE_URL}/products.php`);
+      const response = await apiFetch('/products.php');
       if (!response.ok) throw new Error('Failed to fetch products');
       return await response.json();
     } catch (error) {
@@ -34,12 +30,11 @@ class ApiService {
     }
   }
 
-  /**
-   * Get single product by ID
-   */
   static async getProduct(id) {
     try {
-      const response = await fetch(`${API_BASE_URL}/products.php?id=${id}`);
+      // Use getApiUrl for query string construction
+      const url = getApiUrl(`/products.php?id=${encodeURIComponent(id)}`);
+      const response = await fetch(url, { credentials: 'include' });
       if (!response.ok) throw new Error('Failed to fetch product');
       return await response.json();
     } catch (error) {
@@ -48,16 +43,10 @@ class ApiService {
     }
   }
 
-  /**
-   * Create new product
-   */
   static async createProduct(productData) {
     try {
-      const response = await fetch(`${API_BASE_URL}/products.php`, {
+      const response = await apiFetch('/products.php', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify(productData),
       });
       if (!response.ok) throw new Error('Failed to create product');
@@ -68,16 +57,10 @@ class ApiService {
     }
   }
 
-  /**
-   * Update product
-   */
   static async updateProduct(id, productData) {
     try {
-      const response = await fetch(`${API_BASE_URL}/products.php`, {
+      const response = await apiFetch('/products.php', {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({ id, ...productData }),
       });
       if (!response.ok) throw new Error('Failed to update product');
@@ -88,14 +71,10 @@ class ApiService {
     }
   }
 
-  /**
-   * Delete product
-   */
   static async deleteProduct(id) {
     try {
-      const response = await fetch(`${API_BASE_URL}/products.php?id=${id}`, {
-        method: 'DELETE',
-      });
+      const url = getApiUrl(`/products.php?id=${encodeURIComponent(id)}`);
+      const response = await fetch(url, { method: 'DELETE', credentials: 'include' });
       if (!response.ok) throw new Error('Failed to delete product');
       return await response.json();
     } catch (error) {
