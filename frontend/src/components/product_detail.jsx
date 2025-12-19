@@ -77,7 +77,61 @@ function ProductDetail() {
         return (maxPrice - parseFloat(shopPrice)).toFixed(2);
     };
 
-`cat /tmp/fix_wishlist.txt`
+    // Handle wishlist toggle
+    const handleWishlistToggle = async () => {
+        setWishlistLoading(true);
+        try {
+            // Get customer ID from localStorage
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            const customerId = user.customer_id;
+
+            if (!customerId) {
+                alert('Please login to add items to your wishlist');
+                navigate('/login');
+                return;
+            }
+
+            if (isInWishlist) {
+                // Remove from wishlist
+                const response = await apiFetch('/wishlist.php', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        customer_id: customerId,
+                        product_id: product.product_id
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    setIsInWishlist(false);
+                    alert('Removed from wishlist');
+                }
+            } else {
+                // Add to wishlist
+                const response = await apiFetch('/wishlist.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        customer_id: customerId,
+                        product_id: product.product_id
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    setIsInWishlist(true);
+                    alert(data.already_exists ? 'Already in wishlist' : 'Added to wishlist!');
+                }
+            }
+        } catch (err) {
+            console.error('Error toggling wishlist:', err);
+            alert('Failed to update wishlist');
+        } finally {
+            setWishlistLoading(false);
+        }
+    };
+
 
     // Handle helpful button click
     const handleHelpfulClick = async (reviewId) => {
