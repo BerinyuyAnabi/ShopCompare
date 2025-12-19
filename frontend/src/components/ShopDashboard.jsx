@@ -323,7 +323,7 @@ const ShopDashboard = () => {
         {/* Welcome Section */}
         <div className="welcome-section-shop">
           <h2 className="welcome-title-shop">
-            {getGreeting()}, {shopOwnerName}! 👋
+            {getGreeting()}, {shopOwnerName}! 
           </h2>
           <p className="welcome-subtitle-shop">
             Manage your products and grow your business

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Header from "./header.jsx";
+// import Header from "./header.jsx";
 import "../styles/product_detail.css";
 import { apiFetch, getApiUrl } from '../config/api';
 import { getImageUrl } from '../utils/image';
@@ -46,7 +46,7 @@ function ProductDetail() {
     if (loading) {
         return (
             <>
-                <Header />
+                {/* <Header /> */}
                 <div className="loading-container">
                     <div className="loading-spinner"></div>
                     <p>Loading product details...</p>
@@ -58,7 +58,7 @@ function ProductDetail() {
     if (error || !product) {
         return (
             <>
-                <Header />
+                {/* <Header /> */}
                 <div className="error-container">
                     <h2>Error</h2>
                     <p>{error || 'Product not found'}</p>
@@ -154,7 +154,7 @@ function ProductDetail() {
 
     return (
         <>
-            <Header />
+            {/* <Header /> */}
             <div className="product-detail-container">
                 {/* Breadcrumb Navigation */}
                 <nav className="breadcrumb">
