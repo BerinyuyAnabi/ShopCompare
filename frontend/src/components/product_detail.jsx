@@ -77,53 +77,7 @@ function ProductDetail() {
         return (maxPrice - parseFloat(shopPrice)).toFixed(2);
     };
 
-    // Handle wishlist toggle
-    const handleWishlistToggle = async () => {
-        setWishlistLoading(true);
-        try {
-            // For now, use a hardcoded customer ID (you should get this from session/auth)
-            const customerId = sessionStorage.getItem('customer_id') || 1;
-
-            if (isInWishlist) {
-                // Remove from wishlist
-                const response = await apiFetch('/wishlist.php', {
-                    method: 'DELETE',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        customer_id: customerId,
-                        product_id: product.product_id
-                    })
-                });
-
-                const data = await response.json();
-                if (data.success) {
-                    setIsInWishlist(false);
-                    alert('Removed from wishlist');
-                }
-            } else {
-                // Add to wishlist
-                const response = await apiFetch('/wishlist.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        customer_id: customerId,
-                        product_id: product.product_id
-                    })
-                });
-
-                const data = await response.json();
-                if (data.success) {
-                    setIsInWishlist(true);
-                    alert(data.already_exists ? 'Already in wishlist' : 'Added to wishlist!');
-                }
-            }
-        } catch (err) {
-            console.error('Error toggling wishlist:', err);
-            alert('Failed to update wishlist');
-        } finally {
-            setWishlistLoading(false);
-        }
-    };
+`cat /tmp/fix_wishlist.txt`
 
     // Handle helpful button click
     const handleHelpfulClick = async (reviewId) => {
@@ -157,9 +111,10 @@ function ProductDetail() {
             {/* <Header /> */}
             <div className="product-detail-container">
                 {/* Breadcrumb Navigation */}
-                <nav className="breadcrumb">
-                    <a href="/">Home</a> / <a href="/dashboard">Products</a> / <span>{product.name}</span>
-                </nav>
+                {/* Back Button */}
+                <button onClick={() => navigate('/dashboard')} className="back-to-dashboard">
+                    ← Back to Dashboard
+                </button>
 
                 {/* Main Product Section */}
                 <div className="product-main-section">
