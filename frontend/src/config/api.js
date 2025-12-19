@@ -52,8 +52,11 @@ export async function apiFetch(endpoint, options = {}, timeoutMs = 10000) {
       try {
         localStorage.removeItem('user');
       } catch (e) {}
-      // redirect to login page
-      window.location.replace('/login');
+      // redirect to login page with correct base path
+      const loginPath = isProduction
+        ? '/~logan.anabi/ShopCompare/frontend/login'
+        : '/login';
+      window.location.replace(loginPath);
       throw new Error('Unauthorized');
     }
 
