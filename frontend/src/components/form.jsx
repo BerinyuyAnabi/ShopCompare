@@ -155,7 +155,7 @@ const SignupForm = () => {
   // Do NOT store auth tokens client-side when using server-side sessions.
   localStorage.setItem('user', JSON.stringify(data.user));
         // Redirect customer to dashboard
-        navigate('/dashboard');
+        navigate('/login');
       } else {
         // Handle server errors
         setErrors({ submit: data.message || 'Signup failed. Please try again.' });
