@@ -4,8 +4,9 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // For production deployment on  server
-  base: './',
+  // For production deployment on school server
+  // Use absolute path for school server deployment
+  base: '/~logan.anabi/ShopCompare/frontend/dist/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
