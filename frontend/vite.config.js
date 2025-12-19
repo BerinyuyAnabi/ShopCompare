@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   // For production deployment on school server
   // Use absolute path for school server deployment
-  base: '/~logan.anabi/ShopCompare/frontend/dist/',
+  base: '/~logan.anabi/ShopCompare/frontend/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

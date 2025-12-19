@@ -79,7 +79,7 @@ function App() {
   };
 
   // Determine basename based on environment
-  const basename = import.meta.env.DEV ? '/' : '/~logan.anabi/ShopCompare/frontend/dist/';
+  const basename = import.meta.env.DEV ? '/' : '/~logan.anabi/ShopCompare/frontend/';
 
   return (
     <Router basename={basename}>
