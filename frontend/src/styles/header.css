@@ -103,7 +103,7 @@
 .search-button {
   background: #FD7979;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   /* padding: 0.5rem 0.75rem; */
   cursor: pointer;
   display: flex;
@@ -125,7 +125,7 @@
   width: 20px;
   height: 20px;
   color: white;
-  stroke-width: 2.5;
+  stroke-width: 1.5;
 }
 
 /* Responsive */
