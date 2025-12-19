@@ -6,9 +6,10 @@
 // Determine on the server or localhost
 const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
 
-// API base URL configuration
+// In derive the backend location from the location the frontend
+// was served from. 
 export const API_BASE_URL = isProduction
-  ? 'http://169.239.251.102:3410/~logan.anabi/ShopCompare/backend/api'
+  ? `${window.location.protocol}//${window.location.host}/~logan.anabi/ShopCompare/backend/api`
   : '/api'; // Uses Vite proxy in development
 
 /**
@@ -23,20 +24,36 @@ export function getApiUrl(endpoint) {
 }
 
 /**
- * Helper function for fetch with credentials
- * @param {string} endpoint - The API endpoint path
+ * Helper function for fetch with credentials and a default timeout.
+ * Uses AbortController to fail fast if the backend is not reachable.
+ * @param {string} endpoint - API endpoint path (e.g. '/products.php')
  * @param {object} options - Fetch options
- * @returns {Promise} Fetch promise
+ * @param {number} timeoutMs - Timeout in milliseconds (default 10000)
  */
-export async function apiFetch(endpoint, options = {}) {
+export async function apiFetch(endpoint, options = {}, timeoutMs = 10000) {
   const url = getApiUrl(endpoint);
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+
   const defaultOptions = {
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       ...options.headers
-    }
+    },
+    signal: controller.signal
   };
 
-  return fetch(url, { ...defaultOptions, ...options });
+  try {
+    const res = await fetch(url, { ...defaultOptions, ...options });
+    return res;
+  } catch (err) {
+    // Normalize abort error so callers can show a friendly message
+    if (err.name === 'AbortError') {
+      throw new Error(`Request to ${url} timed out after ${timeoutMs}ms`);
+    }
+    throw err;
+  } finally {
+    clearTimeout(timeout);
+  }
 }
