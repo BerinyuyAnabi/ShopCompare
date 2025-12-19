@@ -1,6 +1,6 @@
 // customer dashboard
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { apiFetch } from '../config/api';
 import FeaturedShops from "./FeaturedShops";
@@ -8,8 +8,15 @@ import "../styles/dashboard.css";
 
 function Dashboard() {
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
+        // Only check authentication when on the /dashboard route
+        // Don't check auth when rendered as part of the homepage
+        if (location.pathname !== '/dashboard') {
+            return;
+        }
+
         // Check session with PHP backend
         const checkAuth = async () => {
             try {
@@ -42,7 +49,7 @@ function Dashboard() {
         };
 
         checkAuth();
-    }, [navigate]);
+    }, [navigate, location.pathname]);
 
     const handleProductClick = (productId) => {
         navigate(`/product/${productId}`);

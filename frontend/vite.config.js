@@ -13,17 +13,17 @@ export default defineConfig({
   },
   server: {
     proxy: {
+      // For school server:
       '/api': {
-        target: 'http://localhost:8888',
+        target: 'http://169.239.251.102:341',
         changeOrigin: true,
-  
-        rewrite: (path) => path.replace(/^\/api/, '/backend/api')
+        rewrite: (path) => path.replace(/^\/api/, '/~logan.anabi/ShopCompare/backend/api')
       }
-      // For server, use:
+      // For localhost MAMP, use:
       // '/api': {
-      //   target: 'http://169.239.251.102:3410',
+      //   target: 'http://localhost:8888',
       //   changeOrigin: true,
-      //   rewrite: (path) => path.replace(/^\/api/, '/~logan.anabi/ShopCompare/backend/api')
+      //   rewrite: (path) => path.replace(/^\/api/, '/ShopCompare/backend/api')
       // }
     }
   }
