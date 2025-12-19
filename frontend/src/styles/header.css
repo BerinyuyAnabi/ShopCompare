@@ -95,7 +95,10 @@
   color: #999;
 }
 
-.search-input::-webkit-search-cancel-button {
+.search-input::-webkit-search-cancel-button,
+.search-input::-webkit-search-cancel-button,
+.search-input::-webkit-search-results-button,
+.search-input::-webkit-search-results-decoration {
   -webkit-appearance: none;
   appearance: none;
 }
