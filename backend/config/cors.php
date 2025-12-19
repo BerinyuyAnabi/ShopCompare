@@ -8,8 +8,11 @@
 $allowed_origins = [
     'http://localhost:5173',
     'http://localhost:3000',
+    'http://localhost:8000',
     'http://169.239.251.102:3410',
-    'http://169.239.251.102'
+    'http://169.239.251.102',
+    // origin/port where the app is hosted
+    'http://169.239.251.102:341'
 ];
 
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
