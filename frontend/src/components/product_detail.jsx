@@ -188,7 +188,6 @@ function ProductDetail() {
                         <div className="product-rating">
                             <div className="stars-large">★★★★☆</div>
                             <span className="rating-text">4.3 out of 5</span>
-                            <span className="review-link">(250 customer reviews)</span>
                         </div>
 
                         <div className="price-section">
@@ -253,7 +252,7 @@ function ProductDetail() {
                                     </div>
                                     {shop.street_address && (
                                         <div className="shop-location">
-                                            📍 {shop.street_address}
+                                            {shop.street_address}
                                         </div>
                                     )}
                                     <button
@@ -445,7 +444,7 @@ function ProductDetail() {
                                                         className="btn-get-directions"
                                                         onClick={() => window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(shop.street_address + ', ' + (shop.country || ''))}`, '_blank')}
                                                     >
-                                                        🧭 Get Directions
+                                                        Get Directions
                                                     </button>
                                                 )}
                                                 {shop.shop_phone && (
@@ -460,7 +459,7 @@ function ProductDetail() {
                                                     className="btn-visit-shop"
                                                     onClick={() => navigate(`/shop/${shop.shop_id}`)}
                                                 >
-                                                    🏪 Visit Shop Page
+                                                    Visit Shop Page
                                                 </button>
                                             </div>
                                         </div>

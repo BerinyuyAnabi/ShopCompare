@@ -34,17 +34,17 @@ function Stats() {
       <h1>Platform Statistics</h1>
       <div className="shoplist">
         <div className="stat-card num_shops">
-          <div className="stat-icon">🏪</div>
+          
           <div className="stat-number">{loading ? '...' : stats.total_shops}</div>
           <div className="stat-label">Total Shops</div>
         </div>
         <div className="stat-card products_available">
-          <div className="stat-icon">👥</div>
+          
           <div className="stat-number">{loading ? '...' : stats.total_customers}</div>
           <div className="stat-label">Customers</div>
         </div>
         <div className="stat-card average_savings">
-          <div className="stat-icon">📦</div>
+          
           <div className="stat-number">{loading ? '...' : stats.total_products}</div>
           <div className="stat-label">Products</div>
         </div>
