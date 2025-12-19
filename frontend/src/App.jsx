@@ -15,6 +15,7 @@ import LoginForm from "./components/login.jsx";
 import ShopSignup from "./components/ShopSignup.jsx";
 import ShopDashboard from "./components/ShopDashboard.jsx";
 import ShopDetails from "./components/shop_details.jsx";
+import Wishlist from "./components/Wishlist.jsx";
 
 function App() {
   // const [products, setProducts] = useState([]);
@@ -70,7 +71,7 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<SignupForm />} />
           <Route path="/storeSignup" element={<ShopSignup />} />
-          <Route path="/wishlist" element={<Dashboard />} />
+          <Route path="/wishlist" element={<Wishlist />} />
         </Routes>
       </div>
     </Router>

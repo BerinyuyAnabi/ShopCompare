@@ -423,6 +423,28 @@
     background: currentColor;
 }
 
+/* Remove from Wishlist Button */
+.remove-from-wishlist-btn {
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+    background: white;
+    color: #f56565;
+    border: 2px solid #f56565;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.remove-from-wishlist-btn:hover {
+    background: #f56565;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(245, 101, 101, 0.3);
+}
+
    /* RESPONSIVE DESIGN */
 
 @media (max-width: 1024px) {
