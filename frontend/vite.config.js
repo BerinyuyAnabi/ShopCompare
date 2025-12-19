@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   // For production deployment on  server
-  base: '/~logan.anabi/ShopCompare/frontend/',
+  base: './',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
@@ -16,11 +16,7 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:8888',
         changeOrigin: true,
-        // In production the backend is served under "/~<user>/ShopCompare/backend/api".
-        // For local development we serve the repository directly so use "/backend/api".
-        // If you run MAMP (Apache) keep the existing production-like path or set the
-        // target port to your Apache port. This rewrite maps local "/api/*" to
-        // "/backend/api/*" so requests hit the backend folder in the repo root.
+  
         rewrite: (path) => path.replace(/^\/api/, '/backend/api')
       }
       // For server, use:

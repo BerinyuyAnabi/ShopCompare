@@ -46,6 +46,17 @@ export async function apiFetch(endpoint, options = {}, timeoutMs = 10000) {
 
   try {
     const res = await fetch(url, { ...defaultOptions, ...options });
+    // If unauthorized, clear client user state and redirect to login so server
+    // session can be refreshed. Backend should return 401 when session expired.
+    if (res.status === 401) {
+      try {
+        localStorage.removeItem('user');
+      } catch (e) {}
+      // redirect to login page
+      window.location.replace('/login');
+      throw new Error('Unauthorized');
+    }
+
     return res;
   } catch (err) {
     // Normalize abort error so callers can show a friendly message

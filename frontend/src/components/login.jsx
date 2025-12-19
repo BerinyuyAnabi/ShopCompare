@@ -98,9 +98,9 @@ const LoginForm = () => {
         // Handle successful login
         console.log('Login successful:', data);
 
-        // Store token and user data
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
+  // Store user data (server manages session via PHP session cookie)
+  // Do NOT store auth tokens in localStorage when using server-side sessions.
+  localStorage.setItem('user', JSON.stringify(data.user));
 
         // Handle Remember Me
         if (rememberMe) {

@@ -151,9 +151,9 @@ const SignupForm = () => {
       if (response.ok && data.success) {
         // Handle successful signup
         console.log('Signup successful:', data);
-        // Store token and user data
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user', JSON.stringify(data.user));
+  // Store user data (server manages session via PHP session cookie)
+  // Do NOT store auth tokens client-side when using server-side sessions.
+  localStorage.setItem('user', JSON.stringify(data.user));
         // Redirect customer to dashboard
         navigate('/dashboard');
       } else {

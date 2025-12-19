@@ -5,14 +5,20 @@
  */
 
 // Database credentials
+// $host = "localhost";
+// $port = "8889"; // Default MAMP MySQL port
+// $db_name = "shopare";
+// $username = "root";
+// $password = "root"; // Default MAMP password
+
 $host = "localhost";
-$port = "8889"; // Default MAMP MySQL port
-$db_name = "shopare";
-$username = "root";
-$password = "root"; // Default MAMP password
+// $port = "3306"; 
+$db_name = "webtech_2025A_logan_anabi";
+$username = "logan.anabi";
+$password = "Minushbest#0";
 
 // Create connection
-$conn = new mysqli($host, $username, $password, $db_name, $port);
+$conn = new mysqli($host, $username, $password, $db_name);
 
 // Check connection
 if ($conn->connect_error) {
