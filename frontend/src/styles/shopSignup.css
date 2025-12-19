@@ -4,7 +4,7 @@
   align-items: center;
   min-height: 100vh;
   height: 100vh;
-  background: linear-gradient(135deg, #FD7979 0%, #FC5C5C 100%);
+  background: white;
   padding: 20px;
   overflow: hidden;
 }
@@ -12,7 +12,8 @@
 .customer-form {
   background: white;
   border-radius: 16px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e2e8f0;
   width: 100%;
   max-width: 1400px;
   height: calc(100vh - 40px);
@@ -28,8 +29,8 @@
   top: 15px;
   left: 15px;
   background: transparent;
-  border: 2px solid white;
-  color: white;
+  border: 2px solid #FD7979;
+  color: #FD7979;
   padding: 8px 16px;
   border-radius: 8px;
   font-size: 13px;
@@ -43,10 +44,10 @@
 }
 
 .back-btn:hover {
-  background: white;
-  color: #FD7979;
+  background: #FD7979;
+  color: white;
   transform: translateX(-3px);
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(253, 121, 121, 0.3);
 }
 
 .back-btn:active {

@@ -8,6 +8,7 @@ import ShopList from "./components/shoplist.jsx";
 import Stats from "./components/stats.jsx";
 import Footer from "./components/footer.jsx";
 import Dashboard from "./components/dashboard.jsx";
+import ProductsList from "./components/ProductsList.jsx";
 import ProductDetail from "./components/product_detail.jsx";
 import SignupForm from "./components/form.jsx";
 import LoginForm from "./components/login.jsx";
@@ -60,16 +61,15 @@ function App() {
   //   }
   // };
 
-  // Home page component
+  // Home page component - Landing Page
   const HomePage = () => (
     <>
       <Header />
       <Hero />
       <ShopList />
       <Stats />
-      <Dashboard/>
+      <ProductsList />
       <Footer />
-
     </>
   );
 
@@ -93,6 +93,7 @@ function App() {
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<SignupForm />} />
           <Route path="/storeSignup" element={<ShopSignup />} />
+          <Route path="/wishlist" element={<Dashboard />} />
         </Routes>
       </div>
     </Router>

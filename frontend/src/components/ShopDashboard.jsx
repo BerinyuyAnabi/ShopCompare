@@ -298,6 +298,16 @@ const ShopDashboard = () => {
     setImagePreview(null);
   };
 
+  const user = JSON.parse(localStorage.getItem('user') || '{}');
+  const shopOwnerName = user.first_name || user.username || 'Shop Owner';
+
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good Morning';
+    if (hour < 18) return 'Good Afternoon';
+    return 'Good Evening';
+  };
+
   return (
     <div className="shop-dashboard">
       <div className="dashboard-header">
@@ -310,6 +320,16 @@ const ShopDashboard = () => {
       </div>
 
       <div className="dashboard-content">
+        {/* Welcome Section */}
+        <div className="welcome-section-shop">
+          <h2 className="welcome-title-shop">
+            {getGreeting()}, {shopOwnerName}! 👋
+          </h2>
+          <p className="welcome-subtitle-shop">
+            Manage your products and grow your business
+          </p>
+        </div>
+
         <div className="actions-bar">
           <button
             onClick={() => {

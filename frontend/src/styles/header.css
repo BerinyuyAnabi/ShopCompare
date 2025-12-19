@@ -26,9 +26,14 @@
 
 .auth-nav {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
+  gap: 2rem;
+}
+
+.nav1 {
+  flex-shrink: 0;
 }
 
 .nav-link {
@@ -44,6 +49,7 @@
   font-weight: 600;
   transition: all 0.3s ease;
   border: 2px solid transparent;
+  white-space: nowrap;
 }
 
 .nav-link:hover {
@@ -59,6 +65,7 @@
 .nav2{
   display: flex;
   gap: 1rem;
+  flex-shrink: 0;
 }
 
 /* Search Bar Styles */
@@ -70,7 +77,8 @@
   padding: 0.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  min-width: 600px;
+  flex: 1;
+  max-width: 600px;
 }
 
 .search-input {

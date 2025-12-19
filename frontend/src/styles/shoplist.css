@@ -2,9 +2,8 @@
 
 .shoplist-container {
   padding: 3rem 2rem;
-  /* max-width: 1200px; */
   margin: 0 auto;
-  background: #f9fafb;
+  background: white;
 }
 
 .shoplist-container h1 {
@@ -15,79 +14,123 @@
   font-weight: 700;
 }
 
-.shoplist {
+/* Featured Shops Section */
+.featured-shops {
+  padding: 0;
+}
+
+.featured-shops .section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.shops-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
 }
 
-/* Individual Shop Cards */
-.shop1,
-.shop2,
-.shop3 {
+/* Shop Card Styles */
+.shop-card {
   background: white;
-  padding: 2.5rem 2rem;
+  padding: 2rem;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   text-align: center;
-  border: 2px solid transparent;
-  position: relative;
-  overflow: hidden;
+  border: 2px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-.shop1::before,
-.shop2::before,
-.shop3::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 5px;
-  background: linear-gradient(90deg, #FD7979, #FDACAC);
-}
-
-.shop1:hover,
-.shop2:hover,
-.shop3:hover {
+.shop-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
   border-color: #FD7979;
 }
 
-/* Shop Card Content */
-.shop1,
-.shop2,
-.shop3 {
-  font-size: 1.2rem;
-  color: #333;
-  font-weight: 600;
-  line-height: 1.6;
+/* Shop Logo */
+.shop-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7fafc;
+  border: 3px solid #FD7979;
 }
 
-/* Different accent colors for each shop */
-.shop1::before {
-  background: linear-gradient(90deg, #FD7979, #FDACAC);
+.shop-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.shop2::before {
-  background: linear-gradient(90deg, #667eea, #764ba2);
-}
-
-.shop3::before {
-  background: linear-gradient(90deg, #10b981, #059669);
-}
-
-/* Add shop icon placeholder */
-.shop1::after,
-.shop2::after,
-.shop3::after {
-  content: '🏪';
-  display: block;
+.shop-logo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 3rem;
-  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #FD7979;
+  background: linear-gradient(135deg, #FD7979 0%, #FC5C5C 100%);
+  color: white;
+}
+
+/* Shop Name */
+.shop-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Shop Description */
+.shop-description {
+  color: #718096;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+  flex: 1;
+}
+
+/* Visit Shop Button - Style like login button */
+.shop-btn {
+  background: linear-gradient(135deg, #FD7979 0%, #FC5C5C 100%);
+  color: white;
+  border: none;
+  padding: 0.875rem 2rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  margin-top: auto;
+}
+
+.shop-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(253, 121, 121, 0.4);
+}
+
+.loading,
+.no-shops {
+  text-align: center;
+  padding: 3rem;
+  color: #718096;
+  font-size: 1.1rem;
 }
 
 /* Responsive */
@@ -96,18 +139,19 @@
     padding: 2rem 1.5rem;
   }
 
-  .shoplist {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  .shops-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 1.5rem;
   }
 }
 
 @media (max-width: 768px) {
-  .shoplist-container h1 {
+  .shoplist-container h1,
+  .featured-shops .section-title {
     font-size: 2rem;
   }
 
-  .shoplist {
+  .shops-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -117,14 +161,17 @@
     padding: 1.5rem 1rem;
   }
 
-  .shoplist-container h1 {
+  .shoplist-container h1,
+  .featured-shops .section-title {
     font-size: 1.75rem;
   }
 
-  .shop1,
-  .shop2,
-  .shop3 {
-    padding: 2rem 1.5rem;
-    font-size: 1.1rem;
+  .shop-card {
+    padding: 1.5rem;
+  }
+
+  .shop-logo {
+    width: 80px;
+    height: 80px;
   }
 }

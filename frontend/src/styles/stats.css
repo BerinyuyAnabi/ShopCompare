@@ -26,13 +26,14 @@
 .products_available,
 .average_savings,
 .customer_rating {
-  background: white;
+  background: #FD7979;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   text-align: center;
   border: 2px solid transparent;
+  color: white;
 }
 
 .num_shops:hover,
@@ -41,36 +42,25 @@
 .customer_rating:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-  border-color: #FD7979;
+  border-color: white;
 }
 
-/* Card Icons */
-.num_shops::before,
-.products_available::before,
-.average_savings::before,
-.customer_rating::before {
-  content: '';
-  display: block;
-  font-size: 3rem;
+/* Stat Card Content */
+.stat-icon {
+  display: none;
+}
+
+.stat-number {
+  font-size: 3.5rem;
   font-weight: 700;
-  margin-bottom: 1rem;
-  color: #FD7979;
+  margin-bottom: 0.5rem;
 }
 
-/* Specific Card Styles */
-.num_shops {
-  background: linear-gradient(135deg, #FD7979 0%, #FDACAC 100%);
-  color: white;
-}
-
-.products_available {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-}
-
-.average_savings {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: white;
+.stat-label {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .customer_rating {

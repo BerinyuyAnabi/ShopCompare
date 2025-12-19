@@ -90,6 +90,29 @@
   padding: 2rem;
 }
 
+/* Welcome Section for Shop Owner */
+.welcome-section-shop {
+  background: linear-gradient(135deg, #FD7979 0%, #FC5C5C 100%);
+  padding: 2.5rem 3rem;
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 40px rgba(253, 121, 121, 0.3);
+  color: white;
+}
+
+.welcome-title-shop {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.welcome-subtitle-shop {
+  font-size: 1.1rem;
+  margin: 0;
+  opacity: 0.95;
+}
+
 .actions-bar {
   display: flex;
   justify-content: flex-end;
@@ -98,19 +121,20 @@
 
 .add-product-btn {
   padding: 1rem 2rem;
-  background: #FD7979;
-  color: white;
-  border: none;
+  background: white;
+  color: #FD7979;
+  border: 2px solid #FD7979;
   border-radius: 8px;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(253, 121, 121, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .add-product-btn:hover {
-  background: #FDACAC;
+  background: #FD7979;
+  color: white;
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(253, 121, 121, 0.4);
 }
