@@ -355,6 +355,7 @@
 }
 
 .product-shop {
+    margin-left: 15px;
     display: flex;
     align-items: center;
     gap: 0.5rem;
