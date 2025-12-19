@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logout from './Logout';
 import '../styles/shop-dashboard.css';
+import { apiFetch, getApiUrl } from '../config/api';
 
 const ShopDashboard = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const ShopDashboard = () => {
     // Check session with PHP backend
     const checkAuth = async () => {
       try {
-        const response = await fetch('/api/check-session.php', {
+        const response = await apiFetch('/check-session.php', {
           credentials: 'include' // Important for sending cookies
         });
         const data = await response.json();
@@ -71,8 +72,8 @@ const ShopDashboard = () => {
     try {
       setLoading(true);
       const user = JSON.parse(localStorage.getItem('user'));
-      const response = await fetch(`/api/products.php?shop_id=${user.shop_id}`);
-      const data = await response.json();
+  const response = await apiFetch(`/products.php?shop_id=${user.shop_id}`);
+  const data = await response.json();
 
       if (data.success) {
         setProducts(data.products || []);
@@ -118,9 +119,10 @@ const ShopDashboard = () => {
         imageFormData.append('image', imageFile);
         imageFormData.append('shop_id', user.shop_id);
 
-        const uploadResponse = await fetch('/api/upload-image.php', {
+        const uploadResponse = await fetch(getApiUrl('/upload-image.php'), {
           method: 'POST',
-          body: imageFormData
+          body: imageFormData,
+          credentials: 'include'
         });
 
         if (!uploadResponse.ok) {
@@ -137,7 +139,7 @@ const ShopDashboard = () => {
         }
       }
 
-      const response = await fetch('/api/products.php', {
+      const response = await apiFetch('/products.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -191,9 +193,10 @@ const ShopDashboard = () => {
         imageFormData.append('image', imageFile);
         imageFormData.append('shop_id', user.shop_id);
 
-        const uploadResponse = await fetch('/api/upload-image.php', {
+        const uploadResponse = await fetch(getApiUrl('/upload-image.php'), {
           method: 'POST',
-          body: imageFormData
+          body: imageFormData,
+          credentials: 'include'
         });
 
         const uploadData = await uploadResponse.json();
@@ -202,7 +205,7 @@ const ShopDashboard = () => {
         }
       }
 
-      const response = await fetch('/api/products.php', {
+      const response = await apiFetch('/products.php', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -244,7 +247,7 @@ const ShopDashboard = () => {
     }
 
     try {
-      const response = await fetch('/api/products.php', {
+      const response = await apiFetch('/products.php', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

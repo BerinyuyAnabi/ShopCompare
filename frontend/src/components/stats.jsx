@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "../styles/stats.css";
+import { apiFetch } from '../config/api';
 
 function Stats() {
   const [stats, setStats] = useState({
@@ -15,7 +16,7 @@ function Stats() {
 
   const fetchStats = async () => {
     try {
-      const response = await fetch('/api/stats.php');
+      const response = await apiFetch('/stats.php');
       const data = await response.json();
 
       if (data.success) {

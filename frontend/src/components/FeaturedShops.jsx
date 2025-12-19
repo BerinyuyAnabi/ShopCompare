@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/dashboard.css";
+import { apiFetch } from '../config/api';
 
 function FeaturedShops({ requireLogin = false, maxShops = null }) {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ function FeaturedShops({ requireLogin = false, maxShops = null }) {
   const fetchShops = async () => {
     try {
       setLoading(true);
-      const response = await fetch('/api/shops.php');
+      const response = await apiFetch('/shops.php');
       const data = await response.json();
 
       if (data.success) {

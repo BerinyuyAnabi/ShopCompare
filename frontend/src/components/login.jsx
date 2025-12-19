@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../styles/form.css';
+import { apiFetch } from '../config/api';
 
 
 const LoginForm = () => {
@@ -74,7 +75,7 @@ const LoginForm = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/login.php', {
+      const response = await apiFetch('/login.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

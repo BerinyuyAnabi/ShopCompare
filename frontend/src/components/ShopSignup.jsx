@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/shopSignup.css";
+import { apiFetch } from '../config/api';
 
 const ShopSignup = () => {
   const navigate = useNavigate();
@@ -150,7 +151,7 @@ const ShopSignup = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/signup.php', {
+      const response = await apiFetch('/signup.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

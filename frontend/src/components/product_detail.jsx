@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "./header.jsx";
 import "../styles/product_detail.css";
+import { apiFetch, getApiUrl } from '../config/api';
 
 function ProductDetail() {
     const { id } = useParams();
@@ -24,7 +25,7 @@ function ProductDetail() {
     const fetchProductData = async () => {
         try {
             setLoading(true);
-            const response = await fetch(`/api/product.php?product_id=${id}`);
+            const response = await apiFetch(`/product.php?product_id=${id}`);
             const data = await response.json();
 
             if (data.success) {
@@ -84,7 +85,7 @@ function ProductDetail() {
 
             if (isInWishlist) {
                 // Remove from wishlist
-                const response = await fetch('/api/wishlist.php', {
+                const response = await apiFetch('/wishlist.php', {
                     method: 'DELETE',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -100,7 +101,7 @@ function ProductDetail() {
                 }
             } else {
                 // Add to wishlist
-                const response = await fetch('/api/wishlist.php', {
+                const response = await apiFetch('/wishlist.php', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -128,7 +129,7 @@ function ProductDetail() {
         if (helpfulClicked[reviewId]) return;
 
         try {
-            const response = await fetch('/api/reviews.php', {
+            const response = await apiFetch('/reviews.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ review_id: reviewId })

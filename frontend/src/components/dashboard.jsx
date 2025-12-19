@@ -2,6 +2,7 @@
 
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import { apiFetch } from '../config/api';
 import FeaturedShops from "./FeaturedShops";
 import "../styles/dashboard.css";
 
@@ -12,7 +13,7 @@ function Dashboard() {
         // Check session with PHP backend
         const checkAuth = async () => {
             try {
-                const response = await fetch('/api/check-session.php', {
+                const response = await apiFetch('/check-session.php', {
                     credentials: 'include' // Important for sending cookies
                 });
                 const data = await response.json();

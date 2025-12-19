@@ -1,9 +1,6 @@
 /**
  * API Service
- * Uses the central API helpers so production builds point to the configured
- * production backend URL (see src/config/api.js). In development this still
- * uses the Vite proxy because the config sets API_BASE_URL = '/api' when
- * running on localhost.
+ * Uses the central API helpers for connection 
  */
 
 import { apiFetch, getApiUrl } from '../config/api';

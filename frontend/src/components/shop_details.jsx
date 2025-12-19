@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import '../styles/shop-page.css';
 import ContactPopup from './ContactPopup';
+import { apiFetch } from '../config/api';
 
 const ShopDetails = () => {
   const { shopId } = useParams();
@@ -20,7 +21,7 @@ const ShopDetails = () => {
 
   const fetchShopData = async () => {
     try {
-      const response = await fetch(`/api/shop.php?shop_id=${shopId}`);
+      const response = await apiFetch(`/shop.php?shop_id=${shopId}`);
       const data = await response.json();
 
       if (data.success) {
@@ -37,7 +38,7 @@ const ShopDetails = () => {
   const fetchShopProducts = async () => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/products.php?shop_id=${shopId}`);
+      const response = await apiFetch(`/products.php?shop_id=${shopId}`);
       const data = await response.json();
 
       if (data.success) {
