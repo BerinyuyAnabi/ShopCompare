@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import Header from "./header.jsx";
 import "../styles/product_detail.css";
 import { apiFetch, getApiUrl } from '../config/api';
+import { getImageUrl } from '../utils/image';
 
 function ProductDetail() {
     const { id } = useParams();
@@ -166,7 +167,7 @@ function ProductDetail() {
                     <div className="product-gallery">
                         <div className="main-image">
                             {product.image_url ? (
-                                <img src={product.image_url} alt={product.name} />
+                                <img src={getImageUrl(product.image_url)} alt={product.name} />
                             ) : (
                                 <div className="image-placeholder">No Image Available</div>
                             )}

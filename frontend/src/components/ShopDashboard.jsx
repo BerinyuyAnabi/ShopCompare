@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Logout from './Logout';
 import '../styles/shop-dashboard.css';
 import { apiFetch, getApiUrl } from '../config/api';
+import { getImageUrl } from '../utils/image';
 
 const ShopDashboard = () => {
   const navigate = useNavigate();
@@ -432,7 +433,7 @@ const ShopDashboard = () => {
                   {!imagePreview && editingProduct && editingProduct.image_url && (
                     <div style={{ marginTop: '10px' }}>
                       <img
-                        src={editingProduct.image_url}
+                        src={getImageUrl(editingProduct.image_url)}
                         alt="Current"
                         style={{ maxWidth: '200px', maxHeight: '200px', objectFit: 'cover', borderRadius: '8px' }}
                       />
@@ -475,7 +476,7 @@ const ShopDashboard = () => {
                 <div key={product.product_id} className="product-card">
                   {product.image_url && (
                     <div className="product-image">
-                      <img src={product.image_url} alt={product.name} />
+                      <img src={getImageUrl(product.image_url)} alt={product.name} />
                     </div>
                   )}
                   <div className="product-info">
