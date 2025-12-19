@@ -57,40 +57,58 @@ try {
 
 $conn->close();
 
-// Fetch products for a specific shop
+// Fetch products for a specific shop or all products
 function handleGet($conn) {
-    if (!isset($_GET['shop_id'])) {
-        http_response_code(400);
-        echo json_encode([
-            'success' => false,
-            'message' => 'Shop ID is required'
-        ]);
-        return;
+    // If shop_id is provided, fetch products for that shop only
+    // Otherwise, fetch all products with shop information
+    if (isset($_GET['shop_id'])) {
+        $shopId = intval($_GET['shop_id']);
+
+        $stmt = $conn->prepare("
+            SELECT
+                p.product_id,
+                p.shop_id,
+                p.name,
+                p.description,
+                p.price,
+                p.stock_quantity,
+                p.category_id,
+                c.category_name as category,
+                p.image_url,
+                p.is_active,
+                p.created_at,
+                p.updated_at
+            FROM products p
+            LEFT JOIN categories c ON p.category_id = c.category_id
+            WHERE p.shop_id = ?
+            ORDER BY p.created_at DESC
+        ");
+
+        $stmt->bind_param("i", $shopId);
+    } else {
+        // Fetch all products with shop information
+        $stmt = $conn->prepare("
+            SELECT
+                p.product_id,
+                p.shop_id,
+                s.shop_name,
+                p.name,
+                p.description,
+                p.price,
+                p.stock_quantity,
+                p.category_id,
+                c.category_name as category,
+                p.image_url,
+                p.is_active,
+                p.created_at,
+                p.updated_at
+            FROM products p
+            LEFT JOIN categories c ON p.category_id = c.category_id
+            LEFT JOIN shops s ON p.shop_id = s.shop_id
+            WHERE p.is_active = 1
+            ORDER BY p.created_at DESC
+        ");
     }
-
-    $shopId = intval($_GET['shop_id']);
-
-    $stmt = $conn->prepare("
-        SELECT
-            p.product_id,
-            p.shop_id,
-            p.name,
-            p.description,
-            p.price,
-            p.stock_quantity,
-            p.category_id,
-            c.category_name as category,
-            p.image_url,
-            p.is_active,
-            p.created_at,
-            p.updated_at
-        FROM products p
-        LEFT JOIN categories c ON p.category_id = c.category_id
-        WHERE p.shop_id = ?
-        ORDER BY p.created_at DESC
-    ");
-
-    $stmt->bind_param("i", $shopId);
 
     if (!$stmt->execute()) {
         throw new Exception('Failed to fetch products: ' . $stmt->error);
