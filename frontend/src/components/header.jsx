@@ -14,7 +14,7 @@ function Header() {
 
         <div className="search">
           <input
-            type="search"
+            type="text"
             className="search-input"
             placeholder="Search products here..."
             aria-label="Search products"
